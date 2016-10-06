@@ -18,11 +18,10 @@ import UIKit
  */
 
 
-class ModelController: NSObject, UIPageViewControllerDataSource {
+class ModelController: NSObject {
 
     var pageData: [String] = []
     var currentIndex = 0
-
 
     override init() {
         super.init()
@@ -48,40 +47,5 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
         return pageData.indexOf(viewController.dataObject) ?? NSNotFound
     }
-
-    // MARK: - Page View Controller Data Source
-
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! DataViewController)
-        if (index == 0) || (index == NSNotFound) {
-            return nil
-        }
-        
-        index -= 1
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
-    }
-
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! DataViewController)
-        if index == NSNotFound {
-            return nil
-        }
-        
-        index += 1
-        if index == self.pageData.count {
-            return nil
-        }
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
-    }
-    
-    
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.pageData.count
-    }
-    
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return currentIndex
-    }
-
 }
 

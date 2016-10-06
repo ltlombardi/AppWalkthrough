@@ -21,6 +21,7 @@ import UIKit
 class ModelController: NSObject, UIPageViewControllerDataSource {
 
     var pageData: [String] = []
+    var currentIndex = 0
 
 
     override init() {
@@ -79,7 +80,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
+        return currentIndex
     }
 
 }

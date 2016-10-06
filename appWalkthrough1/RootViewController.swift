@@ -78,7 +78,6 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     // Manually programatically change the page
     func changePage(direction: UIPageViewControllerNavigationDirection, controller: DataViewController) {
         var pageIndex = indexOfViewController(controller)
-        
         if direction == .Forward {
             if pageIndex == modelController.pageData.count {
                 return
@@ -95,6 +94,7 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         if viewController == nil {
             return
         }
+        modelController.currentIndex = pageIndex
         pageViewController!.setViewControllers([viewController!], direction: direction, animated: true, completion: { _ in })
     }
 

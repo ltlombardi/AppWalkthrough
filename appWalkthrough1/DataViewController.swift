@@ -29,6 +29,17 @@ class DataViewController: UIViewController {
         self.dataLabel!.text = dataObject
     }
 
+    @IBAction func previousPage(sender: UIButton) {
+        getPageViewController().changePage(.Reverse, controller: self)
+    }
+    
+    @IBAction func nextPage(sender: UIButton) {
+        getPageViewController().changePage(.Forward, controller: self)
+    }
+    
+    func getPageViewController() -> RootViewController {
+        return self.parentViewController?.parentViewController as! RootViewController
+    }
 
 }
 
